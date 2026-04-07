@@ -1272,6 +1272,32 @@
     }
 
     render();
+    let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    const swipeThreshold = 100; // Чувствительность
+    const tabs = ['dashboard', 'strategy', 'tasks', 'production', 'feed', 'analytics'];
+    let currentIndex = tabs.indexOf(S.activeTab);
+
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // Свайп влево -> Следующая вкладка
+        if (currentIndex < tabs.length - 1) switchTab(tabs[currentIndex + 1]);
+    }
+    if (touchEndX > touchStartX + swipeThreshold) {
+        // Свайп вправо -> Предыдущая вкладка
+        if (currentIndex > 0) switchTab(tabs[currentIndex - 1]);
+    }
+}
   </script>
 </body>
 </html>
