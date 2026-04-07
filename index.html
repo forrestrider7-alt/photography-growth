@@ -189,6 +189,39 @@
 
     textarea { min-height: 92px; resize: vertical; line-height: 1.45; }
 
+
+    /* Стиль тегов-чипсов */
+.chip {
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: var(--bg);
+  box-shadow: var(--shadow-raised);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.chip.selected {
+  box-shadow: var(--shadow-pressed);
+  color: var(--accent-2);
+  font-weight: 600;
+}
+
+/* Уменьшаем шрифт инпутов для компактности */
+input, textarea {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  border-radius: 12px;
+  border: none;
+  background: var(--bg);
+  box-shadow: var(--shadow-pressed);
+  padding: 10px;
+  width: 100%;
+}
+
+    
     .btn {
       border: 0;
       border-radius: 18px;
@@ -359,6 +392,20 @@
       main { padding: 16px; padding-bottom: calc(130px + var(--safe-bottom)); }
       .task-row { grid-template-columns: 64px 1fr auto; }
     }
+    .view {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
+    opacity: 0;
+}
+.view.active {
+    display: block;
+    opacity: 1;
+    animation: slideIn 0.4s ease forwards;
+}
+@keyframes slideIn {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
   </style>
 </head>
 <body>
